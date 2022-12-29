@@ -18,5 +18,6 @@ module.exports = {
 	rules: {
 		'react/react-in-jsx-scope': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
+		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 	},
 };
