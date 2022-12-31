@@ -1,23 +1,41 @@
-import { Link } from 'react-router-dom';
+interface AuthForm {
+	email: string;
+	password: string;
+}
 
-const Login = () => {
+interface Props {
+	authForm: AuthForm;
+	handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const Signup = ({ authForm, handleOnChange, handleOnSubmit }: Props) => {
 	return (
 		<div className="w-screen h-screen flex items-center justify-center bg-slate-400">
-			<form className="bg-white rounded-sm overflow-hidden p-8">
+			<form
+				onSubmit={handleOnSubmit}
+				className="bg-white rounded-sm overflow-hidden p-8"
+			>
 				<div className="mb-10 text-center font-bold text-3xl text-slate-700">
-					TODO LIST
+					회원가입
 				</div>
 				<div className="flex flex-col gap-y-2 mb-8 w-80">
 					<input
+						name="email"
 						className="border border-slate-200 bg-slate-100 rounded-sm px-4 py-3"
 						type="email"
 						placeholder="이메일"
+						onChange={handleOnChange}
+						value={authForm.email}
 					/>
 					<input
+						name="password"
 						className="border border-slate-200 bg-slate-100 rounded-sm px-4 py-3"
 						type="password"
 						placeholder="비밀번호"
 						minLength={8}
+						onChange={handleOnChange}
+						value={authForm.password}
 					/>
 				</div>
 				<div className="flex flex-col items-center gap-y-3">
@@ -25,18 +43,12 @@ const Login = () => {
 						type="submit"
 						className="w-full p-4 bg-cyan-500 hover:bg-cyan-400 text-cyan-100 font-bold"
 					>
-						로그인
-					</button>
-					<Link
-						to="/auth/signup"
-						className="text-slate-500 hover:text-slate-700"
-					>
 						회원가입
-					</Link>
+					</button>
 				</div>
 			</form>
 		</div>
 	);
 };
 
-export default Login;
+export default Signup;

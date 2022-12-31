@@ -1,15 +1,17 @@
-interface SignupForm {
+import { Link } from 'react-router-dom';
+
+interface AuthForm {
 	email: string;
 	password: string;
 }
 
 interface Props {
-	signupForm: SignupForm;
+	authForm: AuthForm;
 	handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const Signup = ({ signupForm, handleOnChange, handleOnSubmit }: Props) => {
+const Login = ({ authForm, handleOnChange, handleOnSubmit }: Props) => {
 	return (
 		<div className="w-screen h-screen flex items-center justify-center bg-slate-400">
 			<form
@@ -17,7 +19,7 @@ const Signup = ({ signupForm, handleOnChange, handleOnSubmit }: Props) => {
 				className="bg-white rounded-sm overflow-hidden p-8"
 			>
 				<div className="mb-10 text-center font-bold text-3xl text-slate-700">
-					회원가입
+					TODO LIST
 				</div>
 				<div className="flex flex-col gap-y-2 mb-8 w-80">
 					<input
@@ -26,7 +28,7 @@ const Signup = ({ signupForm, handleOnChange, handleOnSubmit }: Props) => {
 						type="email"
 						placeholder="이메일"
 						onChange={handleOnChange}
-						value={signupForm.email}
+						value={authForm.email}
 					/>
 					<input
 						name="password"
@@ -35,7 +37,7 @@ const Signup = ({ signupForm, handleOnChange, handleOnSubmit }: Props) => {
 						placeholder="비밀번호"
 						minLength={8}
 						onChange={handleOnChange}
-						value={signupForm.password}
+						value={authForm.password}
 					/>
 				</div>
 				<div className="flex flex-col items-center gap-y-3">
@@ -43,12 +45,18 @@ const Signup = ({ signupForm, handleOnChange, handleOnSubmit }: Props) => {
 						type="submit"
 						className="w-full p-4 bg-cyan-500 hover:bg-cyan-400 text-cyan-100 font-bold"
 					>
-						회원가입
+						로그인
 					</button>
+					<Link
+						to="/auth/signup"
+						className="text-slate-500 hover:text-slate-700"
+					>
+						회원가입
+					</Link>
 				</div>
 			</form>
 		</div>
 	);
 };
 
-export default Signup;
+export default Login;
