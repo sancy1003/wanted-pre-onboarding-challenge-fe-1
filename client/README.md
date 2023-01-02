@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# wanted-pre-onboarding-challenge-fe-1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 실행
 
-## Available Scripts
+```
+yarn
+yanr start
+```
 
-In the project directory, you can run:
+<br/>
 
-### `yarn start`
+## 주요 폴더 구조
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- hooks : custom hook을 모아 놓은 폴더입니다.
+- pages : 페이지를 구성하는 컴포넌트들을 모아 놓은 폴더입니다.
+- types : API 응답 데이터의 인터페이스를 모아 놓은 폴더입니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br/>
 
-### `yarn test`
+## hooks
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- useFetch.ts : 데이터를 가져오는 API를 호출할 때 사용하는 hook입니다. api를 호출하는 fetch 함수, 로딩 상태, 에러 상태, 결과 값을 반환합니다.
+- useMutation.ts : 데이터를 변화시키는 API를 호출할 때 사용하는 hook입니다. api를 호출하는 mutate 함수, 로딩 상태, 에러 상태, 결과 값을 반환합니다.
+- useUser.ts : 사용자의 token이 유효한지 검사할 때 사용하는 hook 입니다. 사용자의 토큰이 유효하지 않다면 로그인 화면으로 이동시키는 checkUser 함수를 반환합니다.
 
-### `yarn build`
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+각 페이지를 구성하는 컴포넌트들을 역할에 맞게 분리하였습니다.<br/>
+폴더의 최상단에 중복되는 데이터를 관리하고 조건에 맞는 컴포넌트들을 보여주는 XXXPage.tsx 파일이 존재하고 componets 폴더 안에 특정 기능을 수행하는 컴포넌트들이 존재합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+└─ pages
+	└─ auth
+		└─ AuthPage.tsx         // 조건에 맞는 컴포넌트를 보여주는 Container
+		└─ components
+		       └─ Login.tsx     // 회원가입 UI
+		       └─ Signup.tsx    // 로그인 UI
+	└─ todo
+		└─ atoms.ts                 // 전역 상태인 todoListState 생성
+		└─ TodoPage.tsx             // 조건에 맞는 컴포넌트를 보여주는 Container
+		└─ components
+		       └─ Layout.tsx        // 공통 레이아웃
+		       └─ TodoEditor.tsx    // 일정 추가, 수정 UI 및 기능
+		       └─ TodoItem.tsx      // 일정 목록의 아이템 UI
+		       └─ TodoList.tsx      // 일정 목록 UI 및 기능
+		       └─ TodoViewer.tsx    // 일정 상세보기 UI 및 기능
+```
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br/>
+많은 컴포넌트에서 호출하고 변경하는 todo 목록은 recoil을 사용하여 전역 상태로 관리하였고 todo를 추가하거나 수정한 뒤 응답을 받는다면 실시간으로 전역 상태의 todoListState에 반영합니다.
