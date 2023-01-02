@@ -8,6 +8,7 @@ const TodoList = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [todoList] = useRecoilState(todoListState);
+
 	const onClickAddButton = () => navigate('/add');
 	const onClickItem = (selectedId: string) => {
 		if (id === selectedId) navigate(`/`);

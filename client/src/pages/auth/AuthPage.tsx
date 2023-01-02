@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import useMutation from '../../hooks/useMutation';
 import { AuthResponse } from '../../types/auth';
 import { validateMinLength, validateEmail } from '../../utils/validate';
-import Login from './Login';
-import Signup from './Signup';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 interface Props {
 	authType: 'login' | 'create';

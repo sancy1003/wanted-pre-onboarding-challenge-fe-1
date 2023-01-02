@@ -10,12 +10,14 @@ const TodoViewer = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const [_, setTodoList] = useRecoilState(todoListState);
+
 	const {
 		error: fetchError,
 		fetch,
 		isLoading,
 		response: fetchResponse,
 	} = useFetch<TodoResponse>(id && `http://localhost:8080/todos/${id}`);
+
 	const {
 		error: deleteError,
 		mutate,
@@ -25,6 +27,9 @@ const TodoViewer = () => {
 		'DELETE',
 	);
 
+	const onEdit = () => {
+		navigate(`/${id}/edit`);
+	};
 	const onDelete = () => {
 		mutate();
 	};
@@ -42,8 +47,10 @@ const TodoViewer = () => {
 
 	useEffect(() => {
 		if (fetchError) alert(fetchError);
+	}, [fetchError]);
+	useEffect(() => {
 		if (deleteError) alert(deleteError);
-	}, [fetchError, deleteError]);
+	}, [deleteError]);
 
 	return (
 		<div className="flex flex-col w-[500px] bg-white rounded-md p-5">
@@ -72,7 +79,10 @@ const TodoViewer = () => {
 							</div>
 						</div>
 						<div className="flex justify-end gap-x-4">
-							<button className="text-slate-600 hover:text-cyan-700 hover:font-bold">
+							<button
+								onClick={onEdit}
+								className="text-slate-600 hover:text-cyan-700 hover:font-bold"
+							>
 								수정
 							</button>
 							<button

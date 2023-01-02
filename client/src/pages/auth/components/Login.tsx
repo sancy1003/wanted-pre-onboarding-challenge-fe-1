@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { validateEmail, validateMinLength } from '../../utils/validate';
+import { validateEmail, validateMinLength } from '../../../utils/validate';
 
 interface AuthForm {
 	email: string;
