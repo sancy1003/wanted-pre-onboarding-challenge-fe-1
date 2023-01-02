@@ -7,5 +7,9 @@ export interface Todo {
 }
 
 export interface TodoResponse {
+	data: Todo;
+}
+
+export interface TodoListResponse {
 	data: Todo[];
 }

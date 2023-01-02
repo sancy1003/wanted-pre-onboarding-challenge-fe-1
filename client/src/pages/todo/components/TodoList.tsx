@@ -1,20 +1,9 @@
-import { useEffect } from 'react';
-import useFetch from '../../../hooks/useFetch';
-import { TodoResponse } from '../../../types/todo';
+import { useRecoilState } from 'recoil';
+import { todoListState } from '../atoms';
 import TodoItem from './TodoItem';
 
 const TodoList = () => {
-	const { isLoading, error, fetch, response } = useFetch<TodoResponse>(
-		'http://localhost:8080/todos',
-	);
-
-	useEffect(() => {
-		fetch();
-	}, []);
-
-	useEffect(() => {
-		if (error) alert(error);
-	}, [error]);
+	const [todoList] = useRecoilState(todoListState);
 
 	return (
 		<div className="flex flex-col w-[500px] bg-white rounded-md p-5">
@@ -25,7 +14,7 @@ const TodoList = () => {
 				</button>
 			</div>
 			<ul className="flex flex-col gap-y-2 overflow-y-scroll">
-				{response?.data.map((todo) => (
+				{todoList.map((todo) => (
 					<TodoItem key={todo.id} todo={todo} />
 				))}
 			</ul>

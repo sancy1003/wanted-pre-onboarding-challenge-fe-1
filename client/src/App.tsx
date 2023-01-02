@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import AuthPage from './pages/auth/AuthPage';
 import TodoListPage from './pages/todo/TodoListPage';
 
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+	return (
+		<RecoilRoot>
+			<RouterProvider router={router} />
+		</RecoilRoot>
+	);
 }
 
 export default App;

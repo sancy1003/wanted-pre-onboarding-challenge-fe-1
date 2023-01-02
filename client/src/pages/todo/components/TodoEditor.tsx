@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import useMutation from '../../../hooks/useMutation';
-import { Todo } from '../../../types/todo';
+import { TodoResponse } from '../../../types/todo';
+import { todoListState } from '../atoms';
 
 const TodoEditor = () => {
 	const navigate = useNavigate();
+	const [_, setTodoList] = useRecoilState(todoListState);
 	const [todoForm, setTodoForm] = useState({
 		title: '',
 		content: '',
@@ -14,17 +17,17 @@ const TodoEditor = () => {
 	) => {
 		setTodoForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
-	const { mutate, error, response } = useMutation<Todo, typeof todoForm>(
-		`http://localhost:8080/todos`,
-		'POST',
-	);
+	const { mutate, error, response } = useMutation<
+		TodoResponse,
+		typeof todoForm
+	>(`http://localhost:8080/todos`, 'POST');
 	const onSubmit = () => {
 		mutate(todoForm);
 	};
 
 	useEffect(() => {
 		if (response) {
-			console.log(response);
+			setTodoList((prev) => [...prev, response.data]);
 			navigate('/');
 		}
 	}, [response]);
