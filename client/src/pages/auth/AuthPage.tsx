@@ -49,6 +49,13 @@ const AuthPage = ({ authType }: Props) => {
 		if (error) alert(error);
 	}, [error]);
 
+	useEffect(() => {
+		setAuthForm({
+			email: '',
+			password: '',
+		});
+	}, [authType]);
+
 	return authType === 'login' ? (
 		<Login
 			authForm={authForm}

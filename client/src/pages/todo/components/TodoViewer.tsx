@@ -73,7 +73,7 @@ const TodoViewer = () => {
 									<label className="font-bold mb-2 block text-cyan-600">
 										일정 내용
 									</label>
-									<p className="flex-1 basis-0 overflow-y-scroll">
+									<p className="flex-1 basis-0 overflow-y-scroll whitespace-pre-line">
 										{fetchResponse?.data.content}
 									</p>
 								</div>
