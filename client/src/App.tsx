@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AuthPage from './pages/auth/AuthPage';
+import TodoListPage from './pages/todo/TodoListPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <div>root</div>,
+		element: <TodoListPage />,
 	},
 	{
 		path: '/auth/login',

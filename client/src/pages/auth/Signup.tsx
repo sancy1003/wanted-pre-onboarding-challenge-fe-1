@@ -1,3 +1,5 @@
+import { validateEmail, validateMinLength } from '../../utils/validate';
+
 interface AuthForm {
 	email: string;
 	password: string;
@@ -10,6 +12,9 @@ interface Props {
 }
 
 const Signup = ({ authForm, handleOnChange, handleOnSubmit }: Props) => {
+	const isButtonActive =
+		validateEmail(authForm.email) && validateMinLength(authForm.password, 8);
+
 	return (
 		<div className="w-screen h-screen flex items-center justify-center bg-slate-400">
 			<form
@@ -41,7 +46,8 @@ const Signup = ({ authForm, handleOnChange, handleOnSubmit }: Props) => {
 				<div className="flex flex-col items-center gap-y-3">
 					<button
 						type="submit"
-						className="w-full p-4 bg-cyan-500 hover:bg-cyan-400 text-cyan-100 font-bold"
+						disabled={!isButtonActive}
+						className="w-full p-4 bg-cyan-500 hover:bg-cyan-400 text-cyan-100 disabled:bg-slate-300 disabled:text-slate-500 font-bold"
 					>
 						회원가입
 					</button>
