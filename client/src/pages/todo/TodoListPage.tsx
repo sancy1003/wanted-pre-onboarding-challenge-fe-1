@@ -6,6 +6,7 @@ import { todoListState } from './atoms';
 import Layout from './components/Layout';
 import TodoEditor from './components/TodoEditor';
 import TodoList from './components/TodoList';
+import TodoViewer from './components/TodoViewer';
 
 interface Props {
 	todoType?: 'add' | 'edit';
@@ -32,7 +33,7 @@ const TodoListPage = ({ todoType }: Props) => {
 	return (
 		<Layout>
 			<TodoList />
-			<TodoEditor />
+			<TodoViewer />
 		</Layout>
 	);
 };

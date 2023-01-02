@@ -3,12 +3,14 @@ import { Todo } from '../../../types/todo';
 
 interface Props {
 	todo: Todo;
+	onClickItem: (id: string) => void;
 }
 
-const TodoItem = ({ todo }: Props) => {
+const TodoItem = ({ todo, onClickItem }: Props) => {
 	return (
 		<li
 			key={todo.id}
+			onClick={() => onClickItem(todo.id)}
 			className="flex px-4 py-2 text-[15px] bg-slate-100 hover:bg-slate-50 rounded-md cursor-pointer"
 		>
 			<p className="flex-1">{todo.title}</p>

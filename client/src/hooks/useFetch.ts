@@ -1,12 +1,13 @@
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 
-const useFetch = <Response>(url: string) => {
+const useFetch = <Response>(url?: string) => {
 	const [response, setResponse] = useState<Response | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const fetch = async () => {
+		if (!url) return;
 		if (isLoading) return;
 
 		setIsLoading(true);
