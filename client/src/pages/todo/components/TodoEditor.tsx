@@ -17,10 +17,10 @@ const TodoEditor = () => {
 	) => {
 		setTodoForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
-	const { mutate, error, response } = useMutation<
-		TodoResponse,
-		typeof todoForm
-	>(`http://localhost:8080/todos`, 'POST');
+	const { mutate, error, response } = useMutation<TodoResponse>(
+		`http://localhost:8080/todos`,
+		'POST',
+	);
 	const onSubmit = () => {
 		mutate(todoForm);
 	};
@@ -28,7 +28,7 @@ const TodoEditor = () => {
 	useEffect(() => {
 		if (response) {
 			setTodoList((prev) => [...prev, response.data]);
-			navigate('/');
+			navigate(`/${response.data.id}`);
 		}
 	}, [response]);
 

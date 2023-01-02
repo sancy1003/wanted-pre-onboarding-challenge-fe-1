@@ -3,12 +3,12 @@ import { useState } from 'react';
 
 type Method = 'POST' | 'PUT' | 'DELETE';
 
-const useMutation = <Response, Data>(url: string, method: Method) => {
+const useMutation = <Response>(url: string, method: Method) => {
 	const [response, setResponse] = useState<Response | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const mutate = async (data: Data) => {
+	const mutate = async <Data>(data?: Data) => {
 		if (isLoading) return;
 
 		setIsLoading(true);

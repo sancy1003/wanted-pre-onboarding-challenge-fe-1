@@ -13,3 +13,7 @@ export interface TodoResponse {
 export interface TodoListResponse {
 	data: Todo[];
 }
+
+export interface TodoDeleteResponse {
+	data: null;
+}

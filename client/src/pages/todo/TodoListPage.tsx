@@ -33,7 +33,13 @@ const TodoListPage = ({ todoType }: Props) => {
 	return (
 		<Layout>
 			<TodoList />
-			<TodoViewer />
+			{todoType === 'add' ? (
+				<TodoEditor />
+			) : todoType === 'edit' ? (
+				<TodoEditor />
+			) : (
+				<TodoViewer />
+			)}
 		</Layout>
 	);
 };

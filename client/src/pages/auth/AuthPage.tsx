@@ -17,10 +17,10 @@ const AuthPage = ({ authType }: Props) => {
 		password: '',
 	});
 
-	const { mutate, error, response } = useMutation<
-		AuthResponse,
-		typeof authForm
-	>(`http://localhost:8080/users/${authType}`, 'POST');
+	const { mutate, error, response } = useMutation<AuthResponse>(
+		`http://localhost:8080/users/${authType}`,
+		'POST',
+	);
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setAuthForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};

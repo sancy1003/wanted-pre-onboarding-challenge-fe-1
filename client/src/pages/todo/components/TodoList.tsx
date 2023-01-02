@@ -1,13 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { isFunctionLike } from 'typescript';
 import { todoListState } from '../atoms';
 import TodoItem from './TodoItem';
 
 const TodoList = () => {
+	const { id } = useParams();
 	const navigate = useNavigate();
 	const [todoList] = useRecoilState(todoListState);
 	const onClickAddButton = () => navigate('/add');
-	const onClickItem = (id: string) => navigate(`/${id}`);
+	const onClickItem = (selectedId: string) => {
+		if (id === selectedId) navigate(`/`);
+		else navigate(`/${selectedId}`);
+	};
 
 	return (
 		<div className="flex flex-col w-[500px] bg-white rounded-md p-5">
@@ -22,7 +27,12 @@ const TodoList = () => {
 			</div>
 			<ul className="flex flex-col gap-y-2 overflow-y-scroll">
 				{todoList.map((todo) => (
-					<TodoItem key={todo.id} todo={todo} onClickItem={onClickItem} />
+					<TodoItem
+						key={todo.id}
+						todo={todo}
+						onClickItem={onClickItem}
+						isSelected={id === todo.id}
+					/>
 				))}
 			</ul>
 		</div>
