@@ -17,10 +17,10 @@ const AuthPage = ({ authType }: Props) => {
 		password: '',
 	});
 
-	const { mutate, error, response } = useMutation<AuthResponse>(
-		`http://localhost:8080/users/${authType}`,
-		'POST',
-	);
+	const { mutate, error, response } = useMutation<
+		AuthResponse,
+		typeof authForm
+	>(`http://localhost:8080/users/${authType}`, 'POST');
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setAuthForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
@@ -33,10 +33,7 @@ const AuthPage = ({ authType }: Props) => {
 		if (!validateMinLength(authForm.password, 8))
 			return alert('비밀번호는 최소 8자 이상으로 작성해주세요.');
 
-		mutate<typeof authForm>({
-			email: authForm.email,
-			password: authForm.password,
-		});
+		mutate(authForm);
 	};
 
 	useEffect(() => {

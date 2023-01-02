@@ -8,6 +8,10 @@ const router = createBrowserRouter([
 		element: <TodoListPage />,
 	},
 	{
+		path: '/add',
+		element: <TodoListPage todoType="add" />,
+	},
+	{
 		path: '/auth/login',
 		element: <AuthPage authType="login" />,
 	},

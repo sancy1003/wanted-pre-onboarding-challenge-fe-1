@@ -1,14 +1,12 @@
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 
-type Method = 'POST' | 'PUT' | 'DELETE';
-
-const useMutation = <Response, Data>(url: string, method: Method) => {
+const useFetch = <Response>(url: string) => {
 	const [response, setResponse] = useState<Response | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const mutate = async (data: Data) => {
+	const fetch = async () => {
 		if (isLoading) return;
 
 		setIsLoading(true);
@@ -17,8 +15,6 @@ const useMutation = <Response, Data>(url: string, method: Method) => {
 			const token = localStorage.getItem('token');
 			const response = await axios<Response>({
 				url,
-				method,
-				data,
 				headers: { Authorization: token },
 			});
 
@@ -39,7 +35,7 @@ const useMutation = <Response, Data>(url: string, method: Method) => {
 		setIsLoading(false);
 	};
 
-	return { isLoading, mutate, response, error };
+	return { isLoading, fetch, response, error };
 };
 
-export default useMutation;
+export default useFetch;
