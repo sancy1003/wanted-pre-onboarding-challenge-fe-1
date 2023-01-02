@@ -64,6 +64,7 @@ const TodoEditor = () => {
 			navigate(`/${createResponse.data.id}`);
 		}
 	}, [createResponse]);
+
 	useEffect(() => {
 		if (updateResponse) {
 			setTodoList((prev) =>

@@ -21,9 +21,11 @@ const AuthPage = ({ authType }: Props) => {
 		`http://localhost:8080/users/${authType}`,
 		'POST',
 	);
+
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setAuthForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 	};
+
 	const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 

@@ -30,6 +30,7 @@ const TodoViewer = () => {
 	const onClickEditButton = () => {
 		navigate(`/${id}/edit`);
 	};
+
 	const onClickDeleteButton = () => {
 		mutate();
 	};

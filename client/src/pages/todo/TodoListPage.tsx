@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useFetch from '../../hooks/useFetch';
+import useUser from '../../hooks/useUser';
 import { TodoListResponse } from '../../types/todo';
 import { todoListState } from './atoms';
 import Layout from './components/Layout';
@@ -9,17 +10,19 @@ import TodoList from './components/TodoList';
 import TodoViewer from './components/TodoViewer';
 
 interface Props {
-	todoType?: 'add' | 'edit';
+	isEdit?: boolean;
 }
 
-const TodoListPage = ({ todoType }: Props) => {
+const TodoListPage = ({ isEdit }: Props) => {
+	const { checkUser } = useUser();
 	const [_, setTodoList] = useRecoilState(todoListState);
+
 	const { error, fetch, response } = useFetch<TodoListResponse>(
 		'http://localhost:8080/todos',
 	);
 
 	useEffect(() => {
-		fetch();
+		if (checkUser()) fetch();
 	}, []);
 
 	useEffect(() => {
@@ -33,11 +36,7 @@ const TodoListPage = ({ todoType }: Props) => {
 	return (
 		<Layout>
 			<TodoList />
-			{todoType === 'add' || todoType === 'edit' ? (
-				<TodoEditor />
-			) : (
-				<TodoViewer />
-			)}
+			{isEdit ? <TodoEditor /> : <TodoViewer />}
 		</Layout>
 	);
 };

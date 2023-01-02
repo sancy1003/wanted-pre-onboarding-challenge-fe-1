@@ -25,6 +25,7 @@ const useFetch = <Response>(url?: string) => {
 			} else setResponse(null);
 		} catch (error) {
 			const err = error as AxiosError<{ details: string }>;
+
 			if (err.response?.data?.details) {
 				setError(err.response.data.details);
 			} else {

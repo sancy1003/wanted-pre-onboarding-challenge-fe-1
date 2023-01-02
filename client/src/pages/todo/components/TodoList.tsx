@@ -9,11 +9,13 @@ const TodoList = () => {
 	const navigate = useNavigate();
 	const [todoList] = useRecoilState(todoListState);
 
-	const onClickAddButton = () => navigate('/add');
+	const onClickCreateButton = () => navigate('/create');
+
 	const onClickLogoutButton = () => {
 		localStorage.removeItem('token');
 		navigate('/auth/login');
 	};
+
 	const onClickItem = (selectedId: string) => {
 		if (id === selectedId) navigate(`/`);
 		else navigate(`/${selectedId}`);
@@ -31,7 +33,7 @@ const TodoList = () => {
 						로그아웃
 					</button>
 					<button
-						onClick={onClickAddButton}
+						onClick={onClickCreateButton}
 						className="p-2 bg-cyan-500 hover:bg-cyan-400 rounded-md text-xs text-white"
 					>
 						Todo 추가

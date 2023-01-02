@@ -14,11 +14,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/:id/edit',
-		element: <TodoListPage todoType="edit" />,
+		element: <TodoListPage isEdit />,
 	},
 	{
-		path: '/add',
-		element: <TodoListPage todoType="add" />,
+		path: '/create',
+		element: <TodoListPage isEdit />,
 	},
 	{
 		path: '/auth/login',
