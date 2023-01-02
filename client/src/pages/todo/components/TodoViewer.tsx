@@ -27,10 +27,10 @@ const TodoViewer = () => {
 		'DELETE',
 	);
 
-	const onEdit = () => {
+	const onClickEditButton = () => {
 		navigate(`/${id}/edit`);
 	};
-	const onDelete = () => {
+	const onClickDeleteButton = () => {
 		mutate();
 	};
 
@@ -80,13 +80,13 @@ const TodoViewer = () => {
 						</div>
 						<div className="flex justify-end gap-x-4">
 							<button
-								onClick={onEdit}
+								onClick={onClickEditButton}
 								className="text-slate-600 hover:text-cyan-700 hover:font-bold"
 							>
 								수정
 							</button>
 							<button
-								onClick={onDelete}
+								onClick={onClickDeleteButton}
 								className="text-slate-600 hover:text-cyan-700 hover:font-bold"
 							>
 								삭제
